@@ -109,7 +109,6 @@ footer {
   --black: #000000;
 }
 
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -128,7 +127,6 @@ a {
   color: inherit;
 }
 
-/* Section Styles */
 section {
   padding: 6rem 2rem;
   text-align: center;
@@ -138,7 +136,6 @@ h1, h2, h3 {
   color: var(--primary-color);
 }
 
-/* Button Styles */
 button {
   background-color: var(--primary-color);
   color: var(--white);
@@ -257,7 +254,6 @@ footer {
   margin-top: 2rem;
 }
 
-/* Navbar Styles */
 .navbar {
   background: var(--primary-color);
   color: var(--white);
@@ -314,7 +310,6 @@ footer {
   color: var(--secondary-color);
 }
 
-/* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
@@ -338,3 +333,5 @@ footer {
     transform: translateY(0);
   }
 }
+
+
