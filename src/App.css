@@ -158,6 +158,8 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
+  text-align: center;
 }
 
 .home-content h1 {
@@ -183,46 +185,16 @@ button:hover {
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   text-align: left;
-}
-
-.card h4 {
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.card p {
-  margin-bottom: 0.5rem;
-}
-
-.card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.card ul li {
-  margin-bottom: 0.5rem;
 }
 
 .project-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
-}
-
-.project-card {
-  background: var(--white);
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-.project-card h3 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
 }
 
 .contact form {
@@ -272,17 +244,6 @@ footer {
   margin: 0 auto;
 }
 
-.navbar-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.navbar-logo a {
-  color: var(--white);
-  text-decoration: none;
-}
-
 .menu-icon {
   display: none;
   font-size: 1.5rem;
@@ -293,10 +254,6 @@ footer {
   list-style: none;
   display: flex;
   gap: 2rem;
-}
-
-.nav-menu li {
-  cursor: pointer;
 }
 
 .nav-menu li a {
@@ -332,6 +289,16 @@ footer {
   .nav-menu.active {
     transform: translateY(0);
   }
+
+  .home-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .home-content p {
+    font-size: 1.2rem;
+  }
+
+  section {
+    padding: 4rem 1rem;
+  }
 }
-
-
