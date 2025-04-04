@@ -21,7 +21,7 @@ const Navbar = () => {
           transition={{ duration: 0.5 }}
         >
           <Link to="home" smooth={true} duration={500} className="cursor-pointer">
-            My Portfolio
+             Portfolio
           </Link>
         </motion.div>
 

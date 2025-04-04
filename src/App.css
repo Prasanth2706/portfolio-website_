@@ -165,6 +165,7 @@ footer {
   color: var(--white);
   text-decoration: none;
   font-weight: 500;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 

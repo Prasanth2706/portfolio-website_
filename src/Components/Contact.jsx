@@ -1,30 +1,40 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const form = useRef();
   const [statusMessage, setStatusMessage] = useState("");
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
 
-    emailjs
-      .sendForm(
-        "service_you0t9j", // Replace with your EmailJS service ID
-        "template_37nowwf", // Replace with your EmailJS template ID
-        form.current,
-        "KuAKchVGYo1zr4Xaj" // Replace with your EmailJS public key
-      )
-      .then(
-        (result) => {
-          setStatusMessage("Message sent successfully!");
-          e.target.reset();
+    formData.append("access_key", "10b7e1e2-d4f6-44d8-9cd9-52e5cad41893");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        (error) => {
-          setStatusMessage("Failed to send message. Please try again.");
-        }
-      );
+        body: json,
+      }).then((res) => res.json());
+
+      if (res.success) {
+        console.log("Success", res);
+        setStatusMessage("Message sent successfully!");
+        event.target.reset();
+      } else {
+        setStatusMessage("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setStatusMessage("Failed to send message. Please try again.");
+    }
   };
 
   return (
@@ -35,7 +45,7 @@ const Contact = () => {
         transition={{ duration: 1 }}
       >
         <h2>Contact Me</h2>
-        <form ref={form} onSubmit={sendEmail}>
+        <form ref={form} onSubmit={onSubmit}>
           <input type="text" name="user_name" placeholder="Name" required />
           <input type="email" name="user_email" placeholder="Email" required />
           <textarea name="message" placeholder="Message" required></textarea>
