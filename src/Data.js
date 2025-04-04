@@ -53,6 +53,8 @@ export const resumeData = {
         "Job Tracker (An Intuitive Job Application Management Tool - Personal Project)",
       description:
         "Engineered a ReactJS-based tool to manage job applications, with a responsive UI and local storage support. ",
+      liveUrl: "https://job-tracker-sand.vercel.app/",
+      technologies: ["React", "JavaScript", "CSS", "Local Storage"],
     },
   ],
 };

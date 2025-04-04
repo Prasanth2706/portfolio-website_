@@ -399,4 +399,4 @@ const ProjectDetail = ({ project, onClose }) => {
   );
 };
 
-export default Projects;
+export default Projects;  

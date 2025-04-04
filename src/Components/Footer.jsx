@@ -33,8 +33,8 @@ const Footer = () => {
           style={{
             backgroundColor: "var(--primary-color)",
             color: "white",
-            width: "40px",
-            height: "40px",
+            width: "45px",
+            height: "45px",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -45,7 +45,7 @@ const Footer = () => {
             boxShadow: "0 4px 8px rgba(0,0,0,0.1)"
           }}
         >
-          <FaArrowUp />
+          <FaArrowUp style={{ color: "white" }}/>
         </motion.button>
         
         {/* Navigation links */}
