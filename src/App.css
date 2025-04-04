@@ -8,6 +8,13 @@
   --black: #000000;
 }
 
+body.dark-mode {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #bb86fc;
+  --secondary-color: #03dac6;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -50,6 +57,25 @@ button {
 button:hover {
   background-color: var(--secondary-color);
   transform: scale(1.05);
+}
+
+/* Dark Mode Button Styles */
+button.dark-mode-toggle {
+  background-color: var(--primary-color); /* Use primary color for the button */
+  color: var(--white); /* White text for better contrast */
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px; /* Rounded shape */
+  cursor: pointer;
+  font-size: 0.9rem;
+  /* font-weight: bold; */
+  transition: all 0.3s ease;
+}
+
+button.dark-mode-toggle:hover {
+  background-color: var(--secondary-color); /* Change to secondary color on hover */
+  color: var(--black); /* Black text on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .home {
@@ -207,4 +233,14 @@ footer {
   section {
     padding: 4rem 1rem;
   }
+}
+
+/* Fix text color for light mode */
+.education, .experience {
+  color: var(--text-color); /* Use the defined text color variable */
+}
+
+body:not(.dark-mode) .education, 
+body:not(.dark-mode) .experience {
+  color: #333; /* Darker text color for better readability in light mode */
 }
