@@ -238,7 +238,7 @@ const Contact = () => {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <form ref={form} onSubmit={onSubmit}>
+          <form ref={form} onSubmit={onSubmit} style={{ padding: "2rem", borderRadius: "var(--border-radius)", boxShadow: "var(--box-shadow)" }}>
             <div className="form-group">
               <label htmlFor="user_name">Name</label>
               <input
@@ -249,6 +249,7 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Your name"
                 className={formErrors.user_name ? "error" : ""}
+                style={{ border: formErrors.user_name ? "1px solid var(--secondary-color)" : "1px solid #ddd" }}
               />
               {formErrors.user_name && (
                 <p className="error-message">{formErrors.user_name}</p>

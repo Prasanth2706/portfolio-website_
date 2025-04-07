@@ -62,7 +62,7 @@ const About = () => {
               marginTop: "1.5rem",
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.5rem"
+              gap: "0.5rem"ai
             }}
           >
             <FaDownload /> Download Resume

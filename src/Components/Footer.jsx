@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaArrowUp, FaArrowAltCircleUp, FaArrowCircleUp } from "react-icons/fa";
+import { FaArrowLeft, FaArrowTrendUp, FaArrowUp19, FaArrowUpLong } from "react-icons/fa6";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,9 +15,10 @@ const Footer = () => {
 
   return (
     <footer style={{
-      backgroundColor: "var(--background-color)",
-      padding: "3rem 1rem",
-      borderTop: "1px solid rgba(0,0,0,0.1)"
+      backgroundColor: "#f8f9fa",
+      padding: "2rem 1rem",
+      borderTop: "1px solid #dee2e6",
+      textAlign: "center"
     }}>
       <div style={{
         maxWidth: "1200px",
@@ -32,9 +34,9 @@ const Footer = () => {
           whileTap={{ scale: 0.9 }}
           style={{
             backgroundColor: "var(--primary-color)",
-            color: "white",
-            width: "45px",
-            height: "45px",
+            // color: "white",
+            // width: "45px",
+            // height: "45px",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -45,7 +47,7 @@ const Footer = () => {
             boxShadow: "0 4px 8px rgba(0,0,0,0.1)"
           }}
         >
-          <FaArrowUp style={{ color: "white" }}/>
+          <FaArrowUp/>
         </motion.button>
         
         {/* Navigation links */}
@@ -122,10 +124,10 @@ const Footer = () => {
             textAlign: "center"
           }}
         >
-          <p style={{ marginBottom: "0.5rem", color: "var(--text-color)" }}>
+          {/* <p style={{ marginBottom: "0.5rem", color: "var(--text-color)" }}>
             &copy; {currentYear} My Portfolio. All rights reserved.
-          </p>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-color)", opacity: 0.8 }}>
+          </p> */}
+          <p style={{ fontSize: "0.9rem", color: "#6c757d" }}>
             Designed and built with <span style={{ color: "#e25555" }}>♥</span> using React & Framer Motion
           </p>
         </motion.div>
@@ -164,4 +166,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;  
+export default Footer;

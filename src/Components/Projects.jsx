@@ -8,6 +8,7 @@ const Projects = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Filter projects based on search term
+  // If search term is empty, show all projects
   const filteredProjects = resumeData.projects.filter(project => 
     project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -18,18 +19,19 @@ const Projects = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         staggerChildren: 0.2
       }
     }
   };
-  
-  const projectVariants = {
+
+  // Project item animation variants
+  const itemVariants = {
     hidden: { y: 30, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: { duration: 0.6 }
     }
@@ -45,45 +47,73 @@ const Projects = () => {
         style={{ maxWidth: "1200px", margin: "0 auto" }}
       >
         <h2>My Projects</h2>
-        
+
         {/* Search Bar */}
-        <motion.div 
+        <motion.div
           className="search-container"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          style={{ 
-            maxWidth: "500px", 
+          style={{
+            maxWidth: "500px",
             margin: "2rem auto",
-            position: "relative" 
+            position: "relative"
           }}
         >
-          <FaSearch style={{ 
-            position: "absolute", 
-            left: "1rem", 
-            top: "50%", 
+          <FaSearch style={{
+            position: "absolute",
+            left: "1rem",
+            top: "50%",
             transform: "translateY(-50%)",
             color: "var(--primary-color)"
           }} />
-          <input 
-            type="text"
-            placeholder="Search projects..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "0.75rem 1rem 0.75rem 2.5rem",
-              border: "1px solid #ddd",
-              borderRadius: "30px",
-              fontSize: "1rem",
-              backgroundColor: "var(--white)",
-              color: "var(--text-color)"
-            }}
-          />
+          <div style={{ position: "relative", width: "100%" }}>
+            <input
+              type="text"
+              placeholder="Search projects..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "0.75rem 1rem 0.75rem 2.5rem",
+                paddingRight: searchTerm ? "2.5rem" : "1rem",
+                border: "1px solid #ddd",
+                borderRadius: "30px",
+                fontSize: "1rem",
+                backgroundColor: "var(--white)",
+                color: "var(--text-color)"
+              }}
+            />
+            {searchTerm && (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={() => setSearchTerm("")}
+                style={{
+                  position: "absolute",
+                  right: "0.75rem",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "0.25rem",
+                  color: "var(--text-muted)",
+                  fontSize: "1rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                ×
+              </motion.button>
+            )}
+          </div>
         </motion.div>
-        
+
         {/* Project Grid */}
-        <motion.div 
+        <motion.div
           className="project-list"
           variants={containerVariants}
           initial="hidden"
@@ -92,15 +122,15 @@ const Projects = () => {
         >
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
-              <ProjectCard 
-                key={index} 
-                project={project} 
+              <ProjectCard
+                key={index}
+                project={project}
                 index={index}
                 setSelectedId={setSelectedId}
               />
             ))
           ) : (
-            <motion.div 
+            <motion.div
               className="no-results"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -118,13 +148,13 @@ const Projects = () => {
             </motion.div>
           )}
         </motion.div>
-        
+
         {/* Project Modal */}
         <AnimatePresence>
           {selectedId !== null && (
-            <ProjectDetail 
-              project={resumeData.projects[selectedId]} 
-              onClose={() => setSelectedId(null)} 
+            <ProjectDetail
+              project={resumeData.projects[selectedId]}
+              onClose={() => setSelectedId(null)}
             />
           )}
         </AnimatePresence>
@@ -133,39 +163,28 @@ const Projects = () => {
   );
 };
 
-// Project Card Component
 const ProjectCard = ({ project, index, setSelectedId }) => {
-  // Default technologies if not provided
   const technologies = project.technologies || ["React", "CSS", "JavaScript"];
-  
+
   return (
     <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { 
-          opacity: 1, 
-          y: 0, 
-          transition: { duration: 0.5, delay: index * 0.1 }
-        }
-      }}
       className="project-card"
       style={{
         backgroundColor: "var(--white)",
-        borderRadius: "12px",
+        borderRadius: "var(--border-radius)",
         overflow: "hidden",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+        boxShadow: "var(--box-shadow)",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        transition: "transform 0.3s ease, box-shadow 0.3s ease"
       }}
-      whileHover={{ 
-        y: -10,
-        boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
-        transition: { duration: 0.3 }
+      whileHover={{
+        transform: "translateY(-10px)",
+        boxShadow: "0 10px 20px rgba(0,0,0,0.15)"
       }}
     >
-      {/* Project Image Placeholder */}
-      <div 
-        className="project-image" 
+      <div
+        className="project-image"
         style={{
           height: "180px",
           backgroundColor: `hsl(${(index * 40) % 360}, 70%, 80%)`,
@@ -178,19 +197,19 @@ const ProjectCard = ({ project, index, setSelectedId }) => {
       >
         {project.title.charAt(0)}
       </div>
-      
+
       <div className="project-content" style={{ padding: "1.5rem", flex: 1, display: "flex", flexDirection: "column" }}>
         <h3 style={{ marginBottom: "0.75rem", color: "var(--primary-color)" }}>{project.title}</h3>
-        
+
         <p style={{ marginBottom: "1rem", flex: 1 }}>
-          {project.description.length > 120 
-            ? `${project.description.substring(0, 120)}...` 
+          {project.description.length > 120
+            ? `${project.description.substring(0, 120)}...`
             : project.description}
         </p>
-        
+
         <div className="tech-stack" style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.5rem" }}>
           {technologies.map((tech, i) => (
-            <span 
+            <span
               key={i}
               style={{
                 padding: "0.25rem 0.75rem",
@@ -204,7 +223,7 @@ const ProjectCard = ({ project, index, setSelectedId }) => {
             </span>
           ))}
         </div>
-        
+
         <div className="project-buttons" style={{ display: "flex", justifyContent: "space-between" }}>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -220,7 +239,7 @@ const ProjectCard = ({ project, index, setSelectedId }) => {
           >
             More Details
           </motion.button>
-          
+
           {project.liveUrl && (
             <motion.a
               href={project.liveUrl}
@@ -246,11 +265,10 @@ const ProjectCard = ({ project, index, setSelectedId }) => {
   );
 };
 
-// Project Detail Modal Component
 const ProjectDetail = ({ project, onClose }) => {
   // Default technologies if not provided
   const technologies = project.technologies || ["React", "CSS", "JavaScript"];
-  
+
   return (
     <motion.div
       className="modal-backdrop"
@@ -306,11 +324,11 @@ const ProjectDetail = ({ project, onClose }) => {
         >
           ×
         </button>
-        
+
         <h2 style={{ marginBottom: "1.5rem", color: "var(--primary-color)" }}>{project.title}</h2>
-        
+
         {/* Project Image Placeholder */}
-        <div 
+        <div
           style={{
             height: "200px",
             backgroundColor: "var(--primary-color)",
@@ -321,21 +339,21 @@ const ProjectDetail = ({ project, onClose }) => {
             justifyContent: "center",
             color: "white",
             fontSize: "3rem"
-          }} 
+          }}
         >
           {project.title.charAt(0)}
         </div>
-        
+
         <div style={{ marginBottom: "1.5rem" }}>
           <h3 style={{ marginBottom: "0.75rem" }}>Description</h3>
           <p>{project.description}</p>
         </div>
-        
+
         <div style={{ marginBottom: "1.5rem" }}>
           <h3 style={{ marginBottom: "0.75rem" }}>Technologies</h3>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
             {technologies.map((tech, i) => (
-              <span 
+              <span
                 key={i}
                 style={{
                   padding: "0.5rem 1rem",
@@ -350,7 +368,7 @@ const ProjectDetail = ({ project, onClose }) => {
             ))}
           </div>
         </div>
-        
+
         <div style={{ display: "flex", gap: "1rem" }}>
           {project.liveUrl && (
             <motion.a
@@ -372,7 +390,7 @@ const ProjectDetail = ({ project, onClose }) => {
               View Live <FaExternalLinkAlt />
             </motion.a>
           )}
-          
+
           {project.githubUrl && (
   <motion.a
     href={project.githubUrl}
@@ -399,4 +417,4 @@ const ProjectDetail = ({ project, onClose }) => {
   );
 };
 
-export default Projects;  
+export default Projects;
