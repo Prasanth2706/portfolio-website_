@@ -48,10 +48,10 @@ const Contact = () => {
       const link = document.createElement('a');
 
       // Set the href to the PDF location (in public folder)
-      link.href = `${process.env.PUBLIC_URL}/Prasanth_S.pdf`;
+      link.href = `${process.env.PUBLIC_URL}/Prasanth_S_2025.pdf`;
 
       // Force download attribute
-      link.setAttribute('download', 'Prasanth_S.pdf');
+      link.setAttribute('download', 'Prasanth_S_2025.pdf');
 
       // Force content type
       link.type = 'application/pdf';
